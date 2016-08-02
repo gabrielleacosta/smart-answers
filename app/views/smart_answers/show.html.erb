@@ -1,10 +1,14 @@
 <% content_for :title do %><%= @presenter.title %><% end %>
-<% content_for :head do %>
-<%= javascript_include_tag "smart-answers", defer: true %>
+<% if ajax_enabled_for?(@presenter.name) %>
+  <% content_for :head do %>
+    <%= javascript_include_tag "smart-answers", defer: true %>
+  <% end %>
 <% end %>
+
 <% unless @presenter.started? %><div class="grid-row"><% end %>
 <main id="content" role="main">
   <div id="js-replaceable" <% if @presenter.started? %> class="smart-answer-questions group"<% end %>>
+    <%= ajax_enabled_for?(@presenter.name) ? 'ajax enabled' : 'ajax disabled' %>
     <%= render partial: "content" %>
   </div>
 
