@@ -1,0 +1,73 @@
+<% content_for :title do %>
+  Civil union in Italy
+<% end %>
+
+<% content_for :body do %>
+
+  <%= render partial: 'contact_comune_in_italy.govspeak.erb' %>
+
+  <%= render partial: 'what_you_need_to_do.govspeak.erb',
+        locals: { calculator: calculator } %>
+
+  <% if calculator.resident_of_uk? %>
+
+    You’ll need to get a certificate of no impediment (CNI) from the authorities in the UK to prove you’re allowed to marry.
+
+    <% if calculator.partner_british? %>
+    ^Your partner will need to follow the same process to get their own CNI.^
+    <% end %>
+
+    <%= render partial: 'cni_at_local_register_office.govspeak.erb' %>
+
+    <%= render partial: 'cni_issued_locally_validity.govspeak.erb',
+             locals: { calculator: calculator } %>
+
+    <%= render partial: 'getting_a_statutory_declaration_italy.govspeak.erb',
+             locals: { calculator: calculator } %>
+
+    <%= render partial: 'legalisation_and_translation_italy.govspeak.erb' %>
+
+  <% else %>
+
+    <%= render partial: 'nulla_osta_instructions_italy.govspeak.erb',
+           locals: { calculator: calculator } %>
+
+    <%= render partial: 'contact_method.govspeak.erb',
+           locals: { calculator: calculator } %>
+
+    ^ You’ll need to have been living in Italy for at least 3 full days before you can post notice, for example if you arrive in the country on Thursday, the earliest you can post notice is the following Monday. ^
+
+    <%= render partial: "applying_for_a_nulla_osta.govspeak.erb" %>
+
+    <%= render partial: "download_and_fill_notice_and_affidavit_but_not_sign.govspeak.erb" %>
+
+    <%= render partial: "supporting_documents_italy.govspeak.erb" %>
+
+    <%= render partial: 'consular_cni_os_not_uk_resident_ceremony_not_germany.govspeak.erb' %>
+
+    <%= render partial: 'evidence_of_nationality_or_residence_in_the_country.govspeak.erb' %>
+
+    <%= render partial: 'what_happens_next.govspeak.erb' %>
+
+  <% end %>
+
+  <%= render partial: 'names_on_documents_must_match.govspeak.erb' %>
+
+  <% if calculator.resident_outside_of_uk? && calculator.partner_not_british? %>
+
+    <%= render partial: 'you_dont_need_to_stay_in_country.govspeak.erb' %>
+
+  <% end %>
+
+  <% if calculator.partner_not_british? %>
+
+    <%= render partial: 'partner_naturalisation_in_uk.govspeak.erb' %>
+
+  <% end %>
+
+  <%= render partial: 'services_and_fees.govspeak.erb',
+             locals: { calculator: calculator } %>
+
+  *[CNI]:certificate of no impediment
+  *[FCO]:Foreign &amp; Commonwealth Office
+<% end %>
